@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.example.org/conference"
+            class="conference.ConferencePackage"
+            genModel="model/conference.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated conference -->
+      <package
+            uri="http://www.example.org/conference/makingOf"
+            class="conference.makingOf.MakingOfPackage"
+            genModel="model/conference.genmodel"/>
+   </extension>
+
+</plugin>
