@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:validation="http://www.eclipse.org/sirius/description/validation/1.1.0" name="conference" version="8.1.0">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:description_3="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:validation="http://www.eclipse.org/sirius/description/validation/1.1.0" name="conference" version="10.1.0.201507271600">
   <ownedViewpoints name="Conference Views" modelFileExtension="conference">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Tracks Diagram" titleExpression="Tracks" domainClass="conference.Conference" enablePopupBars="true">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Tracks Diagram" titleExpression="feature:name" domainClass="conference.Track" enablePopupBars="true">
       <metamodel href="http://www.example.org/conference#/"/>
       <filters xsi:type="filter:CompositeFilterDescription" name="Location">
         <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@subNodeMappings[name='LocationNode']"/>
       </filters>
       <defaultLayer name="Default">
-        <containerMappings name="TrackContainer" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="[tracks/]" domainClass="conference.Track" dropDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DropTalk']">
+        <containerMappings name="TrackContainer" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="var:self" domainClass="conference.Track" dropDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DropTalk']">
           <subContainerMappings name="TalkContainer" detailDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Subjects']" navigationDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Nav%20Subjects'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentationExtensions[name='Making%20Of%20Navigation']/@layers[name='Making%20Of']/@toolSections.0/@ownedTools[name='Making%20Of']" semanticCandidatesExpression="[talks/]" domainClass="conference.Talk" reusedNodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@subNodeMappings[name='DayNode'] //@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@subNodeMappings[name='LocationNode']" childrenPresentation="List" listContainer="true">
+            <borderedNodeMappings name="SpeakerNode" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="[speakers/]" domainClass="conference.Person">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" resizeKind="NSEW" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Animator.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </borderedNodeMappings>
             <subNodeMappings name="DayNode" semanticCandidatesExpression="feature:day" domainClass="conference.Day">
               <style xsi:type="style:SquareDescription" labelExpression="[name+' '+view.eContainer().oclAsType(diagram::DDiagramElement).target.oclAsType(conference::Talk).time + ' (' + view.eContainer().oclAsType(diagram::DDiagramElement).target.oclAsType(conference::Talk).duration + ' min)'/]" labelAlignment="LEFT" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -23,30 +29,23 @@
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
               </style>
             </subNodeMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" arcWidth="10" arcHeight="10" labelFormat="bold" roundedCorner="true" widthComputationExpression="18">
+            <style xsi:type="style:FlatContainerStyleDescription" roundedCorner="true" widthComputationExpression="18">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+              <labelFormat>bold</labelFormat>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
             </style>
           </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" labelSize="10" labelFormat="bold">
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="1" arcHeight="1" borderSizeComputationExpression="1" labelSize="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
           </style>
         </containerMappings>
         <toolSections name="Creation tools">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Create a Track" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="conference.Track" referenceName="tracks">
-                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="'Titi'"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
           <ownedTools xsi:type="tool:DirectEditLabel" name="DE">
             <mask mask="{0}"/>
             <initialOperation>
@@ -81,32 +80,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-        </toolSections>
-        <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[duration=0/]">
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="foregroundColor">
-              <value href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
-            </featureCustomizations>
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="borderColor">
-              <value href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
-            </featureCustomizations>
-          </vsmElementCustomizations>
-        </customization>
-      </defaultLayer>
-      <additionalLayers name="Speakers">
-        <containerMappings xsi:type="description_1:ContainerMappingImport" name="TrackContainerImport" semanticCandidatesExpression="feature:tracks" reusedContainerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']" importedMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']">
-          <subContainerMappings xsi:type="description_1:ContainerMappingImport" name="TalkContainerImport" semanticCandidatesExpression="feature:talks" reusedNodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@subNodeMappings[name='DayNode'] //@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@subNodeMappings[name='LocationNode']" childrenPresentation="List" importedMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']">
-            <subNodeMappings name="Track_Speaker" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="[speakers/]" domainClass="conference.Person">
-              <style xsi:type="style:SquareDescription" labelAlignment="LEFT" resizeKind="NSEW">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-              </style>
-            </subNodeMappings>
-          </subContainerMappings>
-        </containerMappings>
-        <toolSections name="Creation tools">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Add a new Speaker" nodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@additionalLayers[name='Speakers']/@containerMappings[name='TrackContainerImport']/@subContainerMappings[name='TalkContainerImport']/@subNodeMappings[name='Track_Speaker']" iconPath="/fr.obeo.conference.design/images/Person.gif">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Add a new Speaker" elementsToSelect="var:newSpeaker" nodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@borderedNodeMappings[name='SpeakerNode']" iconPath="/fr.obeo.conference.design/images/Person.gif">
             <variable name="talk"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -132,11 +106,26 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool_1:SelectionWizardDescription" name="Move to another track" precondition="aql:self.oclIsTypeOf(conference::Talk)" candidatesExpression="aql:self.oclAsType(conference::Talk).eContainer().eContainer().tracks">
+            <element name="element"/>
+            <containerView name="containerView"/>
+            <container name="container"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:MoveElement" newContainerExpression="var:element" featureName="talks"/>
+            </initialOperation>
+          </ownedTools>
         </toolSections>
         <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomizationReuse" reuse="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@customization/@vsmElementCustomizations.0/@featureCustomizations.0" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style"/>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[duration=0/]">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="foregroundColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
+            </featureCustomizations>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="borderColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
         </customization>
-      </additionalLayers>
+      </defaultLayer>
       <additionalLayers name="Sirius">
         <decorationDescriptionsSet>
           <decorationDescriptions xsi:type="description_1:MappingBasedDecoration" name="Vote" position="NORTH_EAST" decoratorPath="/fr.obeo.conference.design/images/icone_Sirius_16.png" preconditionExpression="[name.contains('Sirius') or abstract.contains('Sirius')/]" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']"/>
@@ -156,96 +145,41 @@
         </customization>
       </additionalLayers>
     </ownedRepresentations>
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Days Diagram" titleExpression="Days" domainClass="conference.Conference" enablePopupBars="true">
-      <metamodel href="http://www.example.org/conference#/"/>
-      <layout xsi:type="description_1:CompositeLayout" padding="20" direction="LeftToRight"/>
-      <defaultLayer name="Default">
-        <containerMappings name="DayContainer" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="[days/]" domainClass="conference.Day">
-          <subContainerMappings name="Days_TalkContainer" detailDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Subjects']" navigationDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Nav%20Subjects'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentationExtensions[name='Making%20Of%20Navigation']/@layers[name='Making%20Of']/@toolSections.0/@ownedTools[name='Making%20Of']" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Talk']" semanticCandidatesExpression="[talks/]" domainClass="conference.Talk" childrenPresentation="List">
-            <borderedNodeMappings name="SpeakerNode" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="[speakers/]" domainClass="conference.Person">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" resizeKind="NSEW" workspacePath="/fr.obeo.conference.design/images/Animator.png">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              </style>
-            </borderedNodeMappings>
-            <subNodeMappings name="Title" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="var:self" domainClass="conference.Talk">
-              <style xsi:type="style:SquareDescription" labelSize="9" labelFormat="bold" showIcon="false" iconPath="/fr.obeo.conference.design/images/Day.gif" resizeKind="NSEW">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-              </style>
-            </subNodeMappings>
-            <subNodeMappings name="Abstract" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="var:self" domainClass="conference.Talk">
-              <style xsi:type="style:SquareDescription" labelSize="9" showIcon="false" labelExpression="[abstract.concat(' (Room: ') + location.name + ')'/]" iconPath="/fr.obeo.conference.design/images/Day.gif" labelAlignment="LEFT" resizeKind="NSEW">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-              </style>
-            </subNodeMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" arcWidth="10" arcHeight="10" labelFormat="bold" labelExpression="feature:time" roundedCorner="true" widthComputationExpression="18">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
-            </style>
-          </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" labelSize="10" labelFormat="bold">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
-          </style>
-        </containerMappings>
-        <toolSections name="Creation tools">
-          <ownedTools xsi:type="tool:DirectEditLabel" name="DE_Day">
-            <mask mask="{0}"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="New Day" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@containerMappings[name='DayContainer']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="conference.Day" referenceName="days"/>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:DirectEditLabel" name="DE_Talk">
-            <mask mask="{0}"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="time" valueExpression="var:arg0"/>
-            </initialOperation>
-          </ownedTools>
-        </toolSections>
-        <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[duration&lt;40/]">
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@containerMappings[name='DayContainer']/@subContainerMappings[name='Days_TalkContainer']/@style" referenceName="foregroundColor">
-              <value href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
-            </featureCustomizations>
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@containerMappings[name='DayContainer']/@subContainerMappings[name='Days_TalkContainer']/@style" referenceName="borderColor">
-              <value href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
-            </featureCustomizations>
-          </vsmElementCustomizations>
-        </customization>
-      </defaultLayer>
-    </ownedRepresentations>
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Locations Diagram" titleExpression="Locations" domainClass="conference.Conference" enablePopupBars="true">
       <metamodel href="http://www.example.org/conference#/"/>
       <layout xsi:type="description_1:CompositeLayout" padding="20" direction="LeftToRight"/>
       <defaultLayer name="Default">
+        <edgeMappings name="LinkBubble" sourceMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']/@subNodeMappings[name='Location%20Speaker']" targetMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='Location']/@subNodeMappings[name='TalkBubble']" targetFinderExpression="[talks/]">
+          <style lineStyle="dot" targetArrow="NoDecoration" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
         <containerMappings name="LocationContainer" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="[locations/]" domainClass="conference.Location">
           <subNodeMappings name="Location Speaker" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="[talks.speakers/]" domainClass="conference.Person">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/fr.obeo.conference.design/images/Animator.png">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Animator.png">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
           </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" labelSize="10" labelFormat="bold">
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="1" arcHeight="1" borderSizeComputationExpression="1" labelSize="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
+        </containerMappings>
+        <containerMappings xsi:type="description_1:ContainerMappingImport" name="Location" semanticCandidatesExpression="feature:locations" reusedNodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']/@subNodeMappings[name='Location%20Speaker']" importedMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']">
+          <subNodeMappings name="TalkBubble" semanticCandidatesExpression="feature:talks" domainClass="conference.Talk">
+            <style xsi:type="style:EllipseNodeDescription" showIcon="false" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="5">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subNodeMappings>
         </containerMappings>
         <toolSections name="Creation tools">
           <ownedTools xsi:type="tool:DirectEditLabel" name="DE">
@@ -264,32 +198,37 @@
         </toolSections>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[duration&lt;40/]">
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@containerMappings[name='DayContainer']/@subContainerMappings[name='Days_TalkContainer']/@style //@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="foregroundColor">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="foregroundColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
             </featureCustomizations>
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Diagram']/@defaultLayer/@containerMappings[name='DayContainer']/@subContainerMappings[name='Days_TalkContainer']/@style //@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="borderColor">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="borderColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
             </featureCustomizations>
           </vsmElementCustomizations>
         </customization>
       </defaultLayer>
-      <additionalLayers name="Talk Detail">
-        <edgeMappings name="LinkBubble" sourceMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']/@subNodeMappings[name='Location%20Speaker']" targetMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@additionalLayers[name='Talk%20Detail']/@containerMappings[name='Location']/@subNodeMappings[name='TalkBubble']" targetFinderExpression="[talks/]">
-          <style lineStyle="dot" targetArrow="NoDecoration" sizeComputationExpression="2">
+      <additionalLayers name="Map">
+        <edgeMappings name="Pointer" sourceMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']" targetMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@additionalLayers[name='Map']/@containerMappings[name='ConferenceMainMap']/@subNodeMappings[name='LocationPointer']" targetFinderExpression="var:self">
+          <style lineStyle="dot" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings xsi:type="description_1:ContainerMappingImport" name="Location" semanticCandidatesExpression="feature:locations" reusedNodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']/@subNodeMappings[name='Location%20Speaker']" importedMapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']">
-          <subNodeMappings name="TalkBubble" semanticCandidatesExpression="feature:talks" domainClass="conference.Talk">
-            <style xsi:type="style:EllipseNodeDescription" showIcon="false" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="5">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+        <containerMappings name="ConferenceMainMap" semanticCandidatesExpression="var:self" domainClass="conference.Conference">
+          <subNodeMappings name="LocationPointer" semanticCandidatesExpression="feature:locations" domainClass="conference.Location">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:''" tooltipExpression="feature:name" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/fr.obeo.conference.edit/icons/full/obj16/Location.gif">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
         </containerMappings>
       </additionalLayers>
     </ownedRepresentations>
@@ -307,15 +246,17 @@
       </validationSet>
       <defaultLayer name="Default">
         <containerMappings name="Subject" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="feature:subjects" doubleClickDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']/@defaultLayer/@toolSections.0/@ownedTools[name='DblClick%20Done']" domainClass="conference.Subject">
-          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="10" arcHeight="10" borderSizeComputationExpression="2" labelSize="20" labelFormat="bold" showIcon="false" labelExpression="feature:description" roundedCorner="true" widthComputationExpression="20" heightComputationExpression="15">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="2" labelSize="20" showIcon="false" labelExpression="feature:description" roundedCorner="true" widthComputationExpression="20" heightComputationExpression="15">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
           <conditionnalStyles predicateExpression="feature:isDone">
-            <style xsi:type="style:FlatContainerStyleDescription" arcWidth="10" arcHeight="10" borderSizeComputationExpression="2" labelSize="20" labelFormat="bold" showIcon="false" labelExpression="feature:description" roundedCorner="true" widthComputationExpression="20" heightComputationExpression="15" backgroundStyle="Liquid">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="2" labelSize="20" showIcon="false" labelExpression="feature:description" roundedCorner="true" widthComputationExpression="20" heightComputationExpression="15" backgroundStyle="Liquid">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <labelFormat>bold</labelFormat>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -405,6 +346,210 @@
         </backgroundConditionalStyle>
       </intersection>
     </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_3:TreeDescription" name="Stats" initialisation="true" domainClass="conference.Conference">
+      <metamodel href="http://www.example.org/conference#/"/>
+      <subItemMappings name="Locations" domainClass="conference.Conference" semanticCandidatesExpression="var:self">
+        <defaultStyle labelExpression="aql:self.locations->size() + ' Locations'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Location.gif">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="Location" domainClass="conference.Location" semanticCandidatesExpression="feature:locations">
+          <defaultStyle labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+          <directEdit name="DE_Location" elementsToSelect="var:self" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Locations']">
+            <firstModelOperation xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+            <mask mask="{0} : {1}"/>
+            <element name="element"/>
+            <root name="root"/>
+          </directEdit>
+        </subItemMappings>
+        <create name="Create a new Location" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Locations']">
+          <firstModelOperation xsi:type="tool_1:CreateInstance" typeName="conference.Location" referenceName="locations">
+            <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'new location ' + root.oclAsType(conference::Conference).locations->size()"/>
+          </firstModelOperation>
+          <variables name="root" documentation="The semantic element of the tree."/>
+          <variables name="element" documentation="The currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        </create>
+      </subItemMappings>
+      <subItemMappings name="Tracks" domainClass="conference.Conference" semanticCandidatesExpression="var:self">
+        <defaultStyle labelExpression="aql:self.tracks->size() + ' Tracks'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Track.gif">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="Track" detailDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@ownedRepresentationCreationDescriptions[name='Track%20Details%20Diagram']" navigationDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@ownedRepresentationNavigationDescriptions[name='Track%20Details']" domainClass="conference.Track" semanticCandidatesExpression="feature:tracks">
+          <defaultStyle labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+          <directEdit name="DE_Track" elementsToSelect="var:self" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Tracks']">
+            <firstModelOperation xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+            <mask mask="{0} : {1}"/>
+            <element name="element"/>
+            <root name="root"/>
+          </directEdit>
+        </subItemMappings>
+        <create name="Create a new Track" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Tracks']">
+          <firstModelOperation xsi:type="tool_1:CreateInstance" typeName="conference.Track" referenceName="tracks">
+            <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'new track ' + root.oclAsType(conference::Conference).tracks->size()"/>
+          </firstModelOperation>
+          <variables name="root" documentation="The semantic element of the tree."/>
+          <variables name="element" documentation="The currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        </create>
+      </subItemMappings>
+      <subItemMappings name="Speakers" domainClass="conference.Conference" semanticCandidatesExpression="var:self">
+        <defaultStyle labelExpression="aql:self.speakers->size() + ' Speakers'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="Speaker" domainClass="conference.Person" semanticCandidatesExpression="feature:speakers">
+          <defaultStyle labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+          <directEdit name="DE_Speaker" elementsToSelect="var:self" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Speakers']">
+            <firstModelOperation xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+            <mask mask="{0} : {1}"/>
+            <element name="element"/>
+            <root name="root"/>
+          </directEdit>
+        </subItemMappings>
+        <create name="Create a new Speaker" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Speakers']">
+          <firstModelOperation xsi:type="tool_1:CreateInstance" typeName="conference.Person" referenceName="speakers">
+            <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'new speaker ' + root.oclAsType(conference::Conference).speakers->size()"/>
+          </firstModelOperation>
+          <variables name="root" documentation="The semantic element of the tree."/>
+          <variables name="element" documentation="The currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        </create>
+      </subItemMappings>
+      <subItemMappings name="Talks" domainClass="conference.Conference" semanticCandidatesExpression="var:self">
+        <defaultStyle labelExpression="aql:self.tracks.talks->size() + ' Talks'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Talk.gif">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="Talk" domainClass="conference.Talk" semanticCandidatesExpression="aql:self.tracks.talks">
+          <defaultStyle labelExpression="aql:self.name">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+          <directEdit name="DE_Talk" elementsToSelect="var:self" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Talks']">
+            <firstModelOperation xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+            <mask mask="{0}"/>
+            <element name="element"/>
+            <root name="root"/>
+          </directEdit>
+        </subItemMappings>
+      </subItemMappings>
+      <ownedRepresentationCreationDescriptions xsi:type="tool:DiagramCreationDescription" name="Track Details Diagram" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']">
+        <initialOperation/>
+        <containerViewVariable name="containerView"/>
+        <representationNameVariable name="diagramName"/>
+      </ownedRepresentationCreationDescriptions>
+      <ownedRepresentationNavigationDescriptions xsi:type="tool:DiagramNavigationDescription" name="Track Details" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']">
+        <containerViewVariable name="containerView"/>
+        <containerVariable name="container"/>
+        <representationNameVariable name="diagramName"/>
+      </ownedRepresentationNavigationDescriptions>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Days Planning" titleExpression="Days Planning" domainClass="conference.Conference" enablePopupBars="true">
+      <metamodel href="http://www.example.org/conference#/"/>
+      <layout xsi:type="description_1:CompositeLayout" padding="20" direction="LeftToRight"/>
+      <defaultLayer name="Default">
+        <containerMappings name="Week" semanticCandidatesExpression="var:self" domainClass="conference.Conference" childrenPresentation="HorizontalStack">
+          <subContainerMappings name="DayContainer" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="[days/]" domainClass="conference.Day" childrenPresentation="VerticalStack">
+            <subContainerMappings name="Days_TalkContainer" detailDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Subjects']" navigationDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Nav%20Subjects'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentationExtensions[name='Making%20Of%20Navigation']/@layers[name='Making%20Of']/@toolSections.0/@ownedTools[name='Making%20Of']" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Talk']" semanticCandidatesExpression="aql:self.talks->sortedBy(myTalk | myTalk.time)" domainClass="conference.Talk" childrenPresentation="List">
+              <subNodeMappings name="Title" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="var:self" domainClass="conference.Talk">
+                <style xsi:type="style:SquareDescription" labelSize="9" showIcon="false" iconPath="/fr.obeo.conference.design/images/Day.gif" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelFormat>bold</labelFormat>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+                </style>
+              </subNodeMappings>
+              <subNodeMappings name="Abstract" preconditionExpression="aql:self.abstract &lt;> null" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="var:self" domainClass="conference.Talk">
+                <style xsi:type="style:SquareDescription" labelSize="9" showIcon="false" labelExpression="aql:'\r\n' + self.abstract" iconPath="/fr.obeo.conference.design/images/Day.gif" labelAlignment="LEFT" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+                </style>
+              </subNodeMappings>
+              <subNodeMappings name="Speaker" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="var:self" domainClass="conference.Talk">
+                <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'by ' + self.speakers.name->sep(', ')" iconPath="/fr.obeo.conference.design/images/Day.gif" labelAlignment="LEFT" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+                </style>
+              </subNodeMappings>
+              <subNodeMappings name="Location" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="var:self" domainClass="conference.Talk">
+                <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'Room: ' + self.location.name" iconPath="/fr.obeo.conference.design/images/Day.gif" labelAlignment="LEFT" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelFormat>italic</labelFormat>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+                </style>
+              </subNodeMappings>
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" borderLineStyle="dash" labelExpression="feature:time">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+                <labelFormat>bold</labelFormat>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+                <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.0"/>
+              </style>
+            </subContainerMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" arcWidth="1" arcHeight="1" borderSizeComputationExpression="1" labelSize="10" backgroundStyle="GradientTopToBottom">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:''" hideLabelByDefault="true">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Creation tools">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="DE_Day">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="New Day" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@containerMappings[name='Week']/@subContainerMappings[name='DayContainer']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="conference.Day" referenceName="days"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="DE_Talk">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="time" valueExpression="var:arg0"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[duration&lt;40/]">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@containerMappings[name='Week']/@subContainerMappings[name='DayContainer']/@subContainerMappings[name='Days_TalkContainer']/@style" referenceName="foregroundColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
+            </featureCustomizations>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@containerMappings[name='Week']/@subContainerMappings[name='DayContainer']/@subContainerMappings[name='Days_TalkContainer']/@style" referenceName="borderColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+        </customization>
+      </defaultLayer>
+    </ownedRepresentations>
   </ownedViewpoints>
   <ownedViewpoints name="Making Of" modelFileExtension="conference">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Making Of" titleExpression="[name/]" domainClass="makingOf.Story" enablePopupBars="true">
@@ -412,7 +557,7 @@
       <metamodel href="http://www.example.org/conference#//makingOf"/>
       <defaultLayer name="Default">
         <nodeMappings name="Talk Title" semanticCandidatesExpression="[eContainer(Talk)/]" domainClass="conference.Talk">
-          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="-1" hideLabelByDefault="true" resizeKind="NSEW" workspacePath="/fr.obeo.conference.design/images/Sirius.png">
+          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" hideLabelByDefault="true" sizeComputationExpression="-1" resizeKind="NSEW" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Sirius.png">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
@@ -442,127 +587,128 @@
         </edgeMappings>
         <containerMappings name="Day" labelDirectEdit="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@toolSections.0/@ownedTools[name='MakingOf%20DE']" semanticCandidatesExpression="feature:days" domainClass="makingOf.Day">
           <borderedNodeMappings name="Idea" semanticCandidatesExpression="feature:ideas" domainClass="makingOf.Task">
-            <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="4" workspacePath="/fr.obeo.conference.design/images/Ampoule_idee.jpg">
+            <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="4" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Ampoule_idee.jpg">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
           </borderedNodeMappings>
           <subNodeMappings name="Task" semanticCandidatesExpression="feature:tasks" domainClass="makingOf.Task">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="8" workspacePath="/fr.obeo.conference.design/images/biere.jpg">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="8" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/biere.jpg">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
             <conditionnalStyles predicateExpression="[eContainer(makingOf::Day).name.equalsIgnoreCase(eContainer(conference::Talk).day.name)/]">
-              <style xsi:type="style:SquareDescription" borderSizeComputationExpression="2" labelSize="15" labelFormat="bold" showIcon="false" labelExpression="Applause!!!" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:SquareDescription" borderSizeComputationExpression="2" labelSize="15" showIcon="false" labelExpression="Applause!!!" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+                <labelFormat>bold</labelFormat>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[eContainer(conference::Conference).name.contains('Atsen')/]">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="8" workspacePath="/fr.obeo.conference.design/images/kebab.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="8" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/kebab.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
           </subNodeMappings>
           <subNodeMappings name="ParticipantIstanbul" preconditionExpression="[eContainer(conference::Conference).name.contains('Atsen')/]" semanticCandidatesExpression="[participants/]" domainClass="makingOf.Participant">
-            <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Atsen is so cool" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/Ferhat1.jpg">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Atsen is so cool" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Ferhat1.jpg">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 1/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Eating helps thinking!!" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/Ferhat2.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Eating helps thinking!!" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Ferhat2.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 2/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="I'm preparing my talk about MDD of composite kebab" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/Ferhat3.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="I'm preparing my talk about MDD of composite kebab" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Ferhat3.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/Ferhat4.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Ferhat4.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
           </subNodeMappings>
           <subNodeMappings name="ParticipantZurich" preconditionExpression="[eContainer(conference::Conference).name.contains('Eclipse Financial Day')/]" semanticCandidatesExpression="[participants/]" domainClass="makingOf.Participant">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="ECon is so cool" sizeComputationExpression="12" workspacePath="/fr.obeo.conference.design/images/Jérémie (1).JPG">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="ECon is so cool" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (1).JPG">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 1/]">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="I like Zurich's chocolate, but also Stuttgart's sausages" sizeComputationExpression="12" workspacePath="/fr.obeo.conference.design/images/Jérémie (2).JPG">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="I like Zurich's chocolate, but also Stuttgart's sausages" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (2).JPG">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 2/]">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Gna, the futur is SCOUUUUUUT" sizeComputationExpression="12" workspacePath="/fr.obeo.conference.design/images/Jérémie (3).JPG">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Gna, the futur is SCOUUUUUUT" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (3).JPG">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="12" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
           </subNodeMappings>
           <subNodeMappings name="ParticipantJugSummerCamp" preconditionExpression="[eContainer(conference::Conference).name.contains('Jug Summer Camp')/]" semanticCandidatesExpression="[participants/]" domainClass="makingOf.Participant">
-            <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Kenavo" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof1.png">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Kenavo" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof1.png">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 1/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Key nain veau ?" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof2.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Key nain veau ?" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof2.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 2/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Gnnnaa, l'aveuunir : c'est Jonas" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof3.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Gnnnaa, l'aveuunir : c'est Jonas" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof3.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, je t'ai trouvé une idée pour ton intro : moi" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, je t'ai trouvé une idée pour ton intro : moi" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
           </subNodeMappings>
           <subNodeMappings name="ParticipantMixIT" preconditionExpression="[eContainer(conference::Conference).name.contains('MixIT')/]" semanticCandidatesExpression="[participants/]" domainClass="makingOf.Participant">
-            <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="J'ai peur de ce qu'a fait Etienne avec mes photos" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/philippe1.jpg">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="J'ai peur de ce qu'a fait Etienne avec mes photos" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/philippe1.jpg">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 1/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="L'avenir de l'IoT : l'oeil artificiel" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/philippe2.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="L'avenir de l'IoT : l'oeil artificiel" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/philippe2.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 2/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="MixIT : oui, et surtout pour mixer les cocktails" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/philippe3.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="MixIT : oui, et surtout pour mixer les cocktails" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/philippe3.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, je t'ai trouvé une idée pour ton intro : moi" sizeComputationExpression="15" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, je t'ai trouvé une idée pour ton intro : moi" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
           </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="10" arcHeight="10" roundedCorner="true">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" roundedCorner="true">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_gray']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
