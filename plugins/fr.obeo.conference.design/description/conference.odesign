@@ -569,7 +569,7 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="isInvolved" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='Task']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT']" targetFinderExpression="feature:isInvolved">
+        <edgeMappings name="isInvolved" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='Task']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantEConEU2015']" targetFinderExpression="feature:isInvolved">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -577,7 +577,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Has an Idea" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@borderedNodeMappings[name='Idea']" targetFinderExpression="[eContainer(Story).days.ideas/]">
+        <edgeMappings name="Has an Idea" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantEConEU2015']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@borderedNodeMappings[name='Idea']" targetFinderExpression="[eContainer(Story).days.ideas/]">
           <style lineStyle="dash" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -708,7 +708,31 @@
               </style>
             </conditionnalStyles>
           </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" roundedCorner="true">
+          <subNodeMappings name="ParticipantEConEU2015" preconditionExpression="[eContainer(conference::Conference).name.contains('EclipseCon Europe 2015')/]" semanticCandidatesExpression="[participants/]" domainClass="makingOf.Participant">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="ECon is so cool" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (1).JPG">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+            <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 1/]">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="I like Zurich's chocolate, but also Stuttgart's sausages" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (2).JPG">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 2/]">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Gna, the futur is SCOUUUUUUT" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (3).JPG">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" roundedCorner="true" widthComputationExpression="40" heightComputationExpression="30">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_gray']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
