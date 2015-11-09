@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:description_3="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:validation="http://www.eclipse.org/sirius/description/validation/1.1.0" name="conference" version="10.1.0.201507271600">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:description_3="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:validation="http://www.eclipse.org/sirius/description/validation/1.1.0" name="conference" version="10.1.0.201507271600">
   <ownedViewpoints name="Conference Views" modelFileExtension="conference">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Tracks Diagram" titleExpression="feature:name" domainClass="conference.Track" enablePopupBars="true">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Tracks Diagram" titleExpression="aql:self.name" domainClass="conference.Track" enablePopupBars="true">
       <metamodel href="http://www.example.org/conference#/"/>
       <filters xsi:type="filter:CompositeFilterDescription" name="Location">
         <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@subNodeMappings[name='LocationNode']"/>
       </filters>
+      <validationSet name="duration check">
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="duration is more than 0" level="WARNING" message="The element has to be > 0" targetClass="conference.Talk">
+          <audits auditExpression="service:"/>
+          <fixes name="standard duration">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="duration" valueExpression="35"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+      </validationSet>
       <defaultLayer name="Default">
         <containerMappings name="TrackContainer" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DE']" semanticCandidatesExpression="var:self" domainClass="conference.Track" dropDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DropTalk']">
           <subContainerMappings name="TalkContainer" detailDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Subjects']" navigationDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Nav%20Subjects'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentationExtensions[name='Making%20Of%20Navigation']/@layers[name='Making%20Of']/@toolSections.0/@ownedTools[name='Making%20Of']" semanticCandidatesExpression="[talks/]" domainClass="conference.Talk" reusedNodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@subNodeMappings[name='DayNode'] //@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@subNodeMappings[name='LocationNode']" childrenPresentation="List" listContainer="true">
@@ -46,77 +56,79 @@
           </style>
         </containerMappings>
         <toolSections name="Creation tools">
-          <ownedTools xsi:type="tool:DirectEditLabel" name="DE">
+          <ownedTools xsi:type="tool_1:DirectEditLabel" name="DE">
             <mask mask="{0}"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Create a Talk" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Create a Talk" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="conference.Talk" referenceName="talks"/>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="conference.Talk" referenceName="talks"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DiagramNavigationDescription" name="Nav Subjects" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']">
+          <ownedTools xsi:type="tool_1:DiagramNavigationDescription" name="Nav Subjects" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']">
             <containerViewVariable name="containerView"/>
             <containerVariable name="container"/>
             <representationNameVariable name="diagramName"/>
           </ownedTools>
-          <ownedTools xsi:type="tool:DiagramCreationDescription" name="Subjects" titleExpression="[name + ' Subjects'/]" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']">
-            <initialOperation/>
+          <ownedTools xsi:type="tool_1:DiagramCreationDescription" name="Subjects" titleExpression="aql:self.name + ' Subjects'" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self"/>
+            </initialOperation>
             <containerViewVariable name="containerView"/>
             <representationNameVariable name="diagramName"/>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerDropDescription" name="DropTalk" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']">
+          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="DropTalk" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']">
             <oldContainer name="oldSemanticContainer"/>
             <newContainer name="newSemanticContainer"/>
             <element name="element"/>
             <newViewContainer name="newContainerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
-                <subModelOperations xsi:type="tool_1:MoveElement" newContainerExpression="var:newSemanticContainer" featureName="talks"/>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:MoveElement" newContainerExpression="var:newSemanticContainer" featureName="talks"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Add a new Speaker" elementsToSelect="var:newSpeaker" nodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@borderedNodeMappings[name='SpeakerNode']" iconPath="/fr.obeo.conference.design/images/Person.gif">
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="Add a new Speaker" elementsToSelect="var:newSpeaker" nodeMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@borderedNodeMappings[name='SpeakerNode']" iconPath="/fr.obeo.conference.design/images/Person.gif">
             <variable name="talk"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[eContainer(conference::Conference)/]">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="conference.Person" referenceName="speakers" variableName="newSpeaker">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="set this name"/>
-                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:talk">
-                    <subModelOperations xsi:type="tool_1:SetValue" featureName="speakers" valueExpression="var:newSpeaker"/>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="[eContainer(conference::Conference)/]">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="conference.Person" referenceName="speakers" variableName="newSpeaker">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="set this name"/>
+                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:talk">
+                    <subModelOperations xsi:type="tool:SetValue" featureName="speakers" valueExpression="var:newSpeaker"/>
                   </subModelOperations>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:PaneBasedSelectionWizardDescription" name="Add an existing Speaker" precondition="[container.oclIsTypeOf(Talk)/]" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif" windowTitle="Speakers Selection Wizard" message="Select speakers for this talk" choiceOfValuesMessage="Choice of speakers" candidatesExpression="[eContainer(Conference).speakers->removeAll(speakers)/]" selectedValuesMessage="Selected speakers" preSelectedCandidatesExpression="[speakers/]">
+          <ownedTools xsi:type="tool:PaneBasedSelectionWizardDescription" name="Add an existing Speaker" precondition="aql:container.oclIsTypeOf(conference::Talk)" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif" windowTitle="Speakers Selection Wizard" message="Select speakers for this talk" choiceOfValuesMessage="Choice of speakers" candidatesExpression="aql:self.eContainer(conference::Conference).speakers->reject(aSpeaker | container.oclAsType(conference::Talk).speakers->includes(aSpeaker))" selectedValuesMessage="Selected speakers" preSelectedCandidatesExpression="aql:container.oclAsType(conference::Talk).speakers">
             <element name="selectedSpeakers"/>
             <containerView name="containerView"/>
             <container name="container"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:For" expression="var:selectedSpeakers">
-                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:i">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="talks" valueExpression="container"/>
+              <firstModelOperations xsi:type="tool:For" expression="var:selectedSpeakers">
+                <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:i">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="talks" valueExpression="container"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:SelectionWizardDescription" name="Move to another track" precondition="aql:self.oclIsTypeOf(conference::Talk)" candidatesExpression="aql:self.oclAsType(conference::Talk).eContainer().eContainer().tracks">
+          <ownedTools xsi:type="tool:SelectionWizardDescription" name="Move to another track" precondition="aql:self.oclIsTypeOf(conference::Talk)" candidatesExpression="aql:self.oclAsType(conference::Talk).eContainer(conference::Conference).tracks" iconPath="/org.eclipse.sirius.ui/icons/full/others/grayed/forward.gif">
             <element name="element"/>
             <containerView name="containerView"/>
             <container name="container"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:MoveElement" newContainerExpression="var:element" featureName="talks"/>
+              <firstModelOperations xsi:type="tool:MoveElement" newContainerExpression="var:element" featureName="talks"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
         <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[duration=0/]">
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.oclAsType(conference::Talk).duration=0">
             <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="foregroundColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
             </featureCustomizations>
@@ -182,22 +194,22 @@
           </subNodeMappings>
         </containerMappings>
         <toolSections name="Creation tools">
-          <ownedTools xsi:type="tool:DirectEditLabel" name="DE">
+          <ownedTools xsi:type="tool_1:DirectEditLabel" name="DE">
             <mask mask="{0}"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Room" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Room" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="conference.Location" referenceName="locations"/>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="conference.Location" referenceName="locations"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
         <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[duration&lt;40/]">
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.oclAsType(conference::Talk).duration&lt;40">
             <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="foregroundColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
             </featureCustomizations>
@@ -235,11 +247,11 @@
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Subjects" titleExpression="[name + ' Subjects'/]" domainClass="conference.Talk" enablePopupBars="true">
       <metamodel href="http://www.example.org/conference#/"/>
       <validationSet name="Conclusion at the end">
-        <ownedRules xsi:type="validation:SemanticValidationRule" level="ERROR" message="The conclusion must be at the end" targetClass="conference.Subject">
-          <audits auditExpression="[not (description.startsWith('Conclusion') and isDone and not eContainer(Talk).subjects->select(not isDone)->excluding(self)->isEmpty())/]"/>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Conference at the end" level="ERROR" message="The conclusion must be at the end" targetClass="conference.Subject">
+          <audits auditExpression="aql:not (self.description.startsWith('Conclusion') and self.isDone and not self.eContainer(conference::Talk).subjects->select(aSubject | not aSubject.isDone)->excluding(self)->isEmpty())"/>
           <fixes name="switch isDone flag">
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="isDone" valueExpression="false"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="isDone" valueExpression="false"/>
             </initialOperation>
           </fixes>
         </ownedRules>
@@ -264,40 +276,40 @@
           </conditionnalStyles>
         </containerMappings>
         <toolSections name="Subjects">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Subject" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']/@defaultLayer/@containerMappings[name='Subject']">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Subject" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']/@defaultLayer/@containerMappings[name='Subject']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="conference.Subject" referenceName="subjects"/>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="conference.Subject" referenceName="subjects"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DirectEditLabel" name="DE">
+          <ownedTools xsi:type="tool_1:DirectEditLabel" name="DE">
             <mask mask="{0}"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="description" valueExpression="var:0"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="description" valueExpression="var:0"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:ToolDescription" name="Set as Done" precondition="[oclIsTypeOf(Subject)/]" iconPath="/fr.obeo.conference.design/images/done.gif">
+          <ownedTools xsi:type="tool:ToolDescription" name="Set as Done" precondition="[oclIsTypeOf(Subject)/]" iconPath="/fr.obeo.conference.design/images/done.gif">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="isDone" valueExpression="true"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="isDone" valueExpression="true"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="DblClick Done" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']/@defaultLayer/@containerMappings[name='Subject']">
+          <ownedTools xsi:type="tool_1:DoubleClickDescription" name="DblClick Done" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Subjects']/@defaultLayer/@containerMappings[name='Subject']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
-                <subModelOperations xsi:type="tool_1:Switch">
-                  <cases conditionExpression="feature:isDone">
-                    <subModelOperations xsi:type="tool_1:SetValue" featureName="isDone" valueExpression="false"/>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:element.oclAsType(conference::Subject)">
+                <subModelOperations xsi:type="tool:Switch">
+                  <cases conditionExpression="aql:self.isDone">
+                    <subModelOperations xsi:type="tool:SetValue" featureName="isDone" valueExpression="false"/>
                   </cases>
                   <cases conditionExpression="[not isDone/]">
-                    <subModelOperations xsi:type="tool_1:SetValue" featureName="isDone" valueExpression="true"/>
+                    <subModelOperations xsi:type="tool:SetValue" featureName="isDone" valueExpression="true"/>
                   </cases>
                   <default>
-                    <subModelOperations xsi:type="tool_1:SetValue" featureName="isDone" valueExpression="true"/>
+                    <subModelOperations xsi:type="tool:SetValue" featureName="isDone" valueExpression="true"/>
                   </default>
                 </subModelOperations>
               </firstModelOperations>
@@ -307,6 +319,7 @@
       </defaultLayer>
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_2:CrossTableDescription" name="ProgramTable" domainClass="conference.Conference" initialHeaderColumnWidth="50">
+      <metamodel href="http://www.example.org/conference#/"/>
       <ownedLineMappings name="DayLine" domainClass="conference.Day" semanticCandidatesExpression="feature:days" headerLabelExpression="feature:name">
         <ownedSubLines name="TalkLine" domainClass="conference.Talk" semanticCandidatesExpression="[talks->sortedBy(time)/]" headerLabelExpression="feature:name">
           <ownedSubLines name="SpeakerLine" domainClass="conference.Person" semanticCandidatesExpression="feature:speakers" headerLabelExpression="feature:name"/>
@@ -359,15 +372,15 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </defaultStyle>
           <directEdit name="DE_Location" elementsToSelect="var:self" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Locations']">
-            <firstModelOperation xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+            <firstModelOperation xsi:type="tool:SetValue" featureName="name" valueExpression="var:0"/>
             <mask mask="{0} : {1}"/>
             <element name="element"/>
             <root name="root"/>
           </directEdit>
         </subItemMappings>
         <create name="Create a new Location" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Locations']">
-          <firstModelOperation xsi:type="tool_1:CreateInstance" typeName="conference.Location" referenceName="locations">
-            <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'new location ' + root.oclAsType(conference::Conference).locations->size()"/>
+          <firstModelOperation xsi:type="tool:CreateInstance" typeName="conference.Location" referenceName="locations">
+            <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="aql:'new location ' + root.oclAsType(conference::Conference).locations->size()"/>
           </firstModelOperation>
           <variables name="root" documentation="The semantic element of the tree."/>
           <variables name="element" documentation="The currently edited element."/>
@@ -385,15 +398,15 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </defaultStyle>
           <directEdit name="DE_Track" elementsToSelect="var:self" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Tracks']">
-            <firstModelOperation xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+            <firstModelOperation xsi:type="tool:SetValue" featureName="name" valueExpression="var:0"/>
             <mask mask="{0} : {1}"/>
             <element name="element"/>
             <root name="root"/>
           </directEdit>
         </subItemMappings>
         <create name="Create a new Track" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Tracks']">
-          <firstModelOperation xsi:type="tool_1:CreateInstance" typeName="conference.Track" referenceName="tracks">
-            <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'new track ' + root.oclAsType(conference::Conference).tracks->size()"/>
+          <firstModelOperation xsi:type="tool:CreateInstance" typeName="conference.Track" referenceName="tracks">
+            <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="aql:'new track ' + root.oclAsType(conference::Conference).tracks->size()"/>
           </firstModelOperation>
           <variables name="root" documentation="The semantic element of the tree."/>
           <variables name="element" documentation="The currently edited element."/>
@@ -411,15 +424,15 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </defaultStyle>
           <directEdit name="DE_Speaker" elementsToSelect="var:self" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Speakers']">
-            <firstModelOperation xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+            <firstModelOperation xsi:type="tool:SetValue" featureName="name" valueExpression="var:0"/>
             <mask mask="{0} : {1}"/>
             <element name="element"/>
             <root name="root"/>
           </directEdit>
         </subItemMappings>
         <create name="Create a new Speaker" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Speakers']">
-          <firstModelOperation xsi:type="tool_1:CreateInstance" typeName="conference.Person" referenceName="speakers">
-            <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'new speaker ' + root.oclAsType(conference::Conference).speakers->size()"/>
+          <firstModelOperation xsi:type="tool:CreateInstance" typeName="conference.Person" referenceName="speakers">
+            <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="aql:'new speaker ' + root.oclAsType(conference::Conference).speakers->size()"/>
           </firstModelOperation>
           <variables name="root" documentation="The semantic element of the tree."/>
           <variables name="element" documentation="The currently edited element."/>
@@ -437,19 +450,21 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </defaultStyle>
           <directEdit name="DE_Talk" elementsToSelect="var:self" mapping="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@subItemMappings[name='Talks']">
-            <firstModelOperation xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+            <firstModelOperation xsi:type="tool:SetValue" featureName="name" valueExpression="var:0"/>
             <mask mask="{0}"/>
             <element name="element"/>
             <root name="root"/>
           </directEdit>
         </subItemMappings>
       </subItemMappings>
-      <ownedRepresentationCreationDescriptions xsi:type="tool:DiagramCreationDescription" name="Track Details Diagram" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']">
-        <initialOperation/>
+      <ownedRepresentationCreationDescriptions xsi:type="tool_1:DiagramCreationDescription" name="Track Details Diagram" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']">
+        <initialOperation>
+          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self"/>
+        </initialOperation>
         <containerViewVariable name="containerView"/>
         <representationNameVariable name="diagramName"/>
       </ownedRepresentationCreationDescriptions>
-      <ownedRepresentationNavigationDescriptions xsi:type="tool:DiagramNavigationDescription" name="Track Details" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']">
+      <ownedRepresentationNavigationDescriptions xsi:type="tool_1:DiagramNavigationDescription" name="Track Details" diagramDescription="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']">
         <containerViewVariable name="containerView"/>
         <containerVariable name="container"/>
         <representationNameVariable name="diagramName"/>
@@ -518,28 +533,28 @@
           </style>
         </containerMappings>
         <toolSections name="Creation tools">
-          <ownedTools xsi:type="tool:DirectEditLabel" name="DE_Day">
+          <ownedTools xsi:type="tool_1:DirectEditLabel" name="DE_Day">
             <mask mask="{0}"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="New Day" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@containerMappings[name='Week']/@subContainerMappings[name='DayContainer']">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="New Day" containerMappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@containerMappings[name='Week']/@subContainerMappings[name='DayContainer']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="conference.Day" referenceName="days"/>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="conference.Day" referenceName="days"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DirectEditLabel" name="DE_Talk">
+          <ownedTools xsi:type="tool_1:DirectEditLabel" name="DE_Talk">
             <mask mask="{0}"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="time" valueExpression="var:arg0"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="time" valueExpression="var:arg0"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
         <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[duration&lt;40/]">
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.oclAsType(conference::Talk).duration&lt;40">
             <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@containerMappings[name='Week']/@subContainerMappings[name='DayContainer']/@subContainerMappings[name='Days_TalkContainer']/@style" referenceName="foregroundColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
             </featureCustomizations>
@@ -569,7 +584,7 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="isInvolved" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='Task']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantEConEU2015']" targetFinderExpression="feature:isInvolved">
+        <edgeMappings name="isInvolved" deletionDescription="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteIsInvolved']" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='Task']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantEConEU2015']" targetFinderExpression="feature:isInvolved">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -593,7 +608,7 @@
             </style>
           </borderedNodeMappings>
           <subNodeMappings name="Task" semanticCandidatesExpression="feature:tasks" domainClass="makingOf.Task">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="8" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/biere.jpg">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" sizeComputationExpression="8" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/beer.png">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
@@ -654,7 +669,7 @@
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/beer_toomuch.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
@@ -678,7 +693,7 @@
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, je t'ai trouvé une idée pour ton intro : moi" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, je t'ai trouvé une idée pour ton intro : moi" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/beer_toomuch.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
@@ -702,31 +717,31 @@
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
-              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, je t'ai trouvé une idée pour ton intro : moi" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="Etienne, je t'ai trouvé une idée pour ton intro : moi" sizeComputationExpression="15" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/beer_toomuch.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
           </subNodeMappings>
           <subNodeMappings name="ParticipantEConEU2015" preconditionExpression="[eContainer(conference::Conference).name.contains('EclipseCon Europe 2015')/]" semanticCandidatesExpression="[participants/]" domainClass="makingOf.Participant">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="ECon is so cool" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (1).JPG">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="ECon is so cool" sizeComputationExpression="18" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/alex1.png">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 1/]">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="I like Zurich's chocolate, but also Stuttgart's sausages" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (2).JPG">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Don't work on your talk. Go dancing." sizeComputationExpression="18" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/alex2.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 2/]">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Gna, the futur is SCOUUUUUUT" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Jérémie (3).JPG">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Gna, the futur is Jubulaaaaaaaa" sizeComputationExpression="18" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/alex3.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[container.oclAsType(makingOf::Day).tasks.isInvolved->select(self = thisEObject)->size() = 3/]">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="12" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/nicolasdeloof4.jpg">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Etienne, I found an idea for your introduction: ME" sizeComputationExpression="18" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/beer_toomuch.jpg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
@@ -741,61 +756,71 @@
           </style>
         </containerMappings>
         <toolSections name="Making Of">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Day" containerMappings="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Day" containerMappings="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="makingOf.Day" referenceName="days"/>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="makingOf.Day" referenceName="days"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DirectEditLabel" name="MakingOf DE">
+          <ownedTools xsi:type="tool_1:DirectEditLabel" name="MakingOf DE">
             <mask mask="{0}"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:0"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:0"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Task" label="I need to WORK" nodeMappings="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='Task']">
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="Task" label="I need to WORK" nodeMappings="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='Task']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="makingOf.Task" referenceName="tasks"/>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="makingOf.Task" referenceName="tasks"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:SelectionWizardDescription" name="Participant" label="Best Expert of the World" precondition="[oclIsTypeOf(makingOf::Day)/]" candidatesExpression="[eContainer(Conference).speakers/]" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif" windowTitle="Speaker Wizard">
+          <ownedTools xsi:type="tool:SelectionWizardDescription" name="Participant" label="Best Expert of the World" precondition="[oclIsTypeOf(makingOf::Day)/]" candidatesExpression="[eContainer(Conference).speakers/]" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif" windowTitle="Speaker Wizard">
             <element name="speaker"/>
             <containerView name="containerView"/>
             <container name="day"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[day/]">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="makingOf.Participant" referenceName="participants" variableName="newParticipant">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="person" valueExpression="var:speaker"/>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="[day/]">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="makingOf.Participant" referenceName="participants" variableName="newParticipant">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="person" valueExpression="var:speaker"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Idea" label="Awesome Idea" nodeMappings="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@borderedNodeMappings[name='Idea']" iconPath="/fr.obeo.conference.design/images/idea.gif">
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="Idea" label="Awesome Idea" nodeMappings="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@borderedNodeMappings[name='Idea']" iconPath="/fr.obeo.conference.design/images/idea.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="makingOf.Task" referenceName="ideas"/>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="makingOf.Task" referenceName="ideas"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="isInvolved" label="Collaborative WORK" edgeMappings="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@edgeMappings[name='isInvolved']">
+          <ownedTools xsi:type="tool_1:EdgeCreationDescription" name="isInvolved" label="Collaborative WORK" edgeMappings="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@edgeMappings[name='isInvolved']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
             <targetViewVariable name="targetView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:SetValue" featureName="isInvolved" valueExpression="var:target"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="isInvolved" valueExpression="var:target"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="DeleteIsInvolved">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:Unset" featureName="isInvolved" elementExpression="feature:isInvolved"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
     <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="Making Of Navigation" viewpointURI="viewpoint:/fr.obeo.conference.design/Conference Views" representationName="Tracks Diagram">
+      <metamodel href="http://www.example.org/conference#/"/>
+      <metamodel href="http://www.example.org/conference#//makingOf"/>
       <layers name="Making Of" activeByDefault="true">
         <toolSections name="Making Of">
-          <ownedTools xsi:type="tool:DiagramNavigationDescription" name="Making Of" browseExpression="[makingOfStories/]" diagramDescription="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']">
+          <ownedTools xsi:type="tool_1:DiagramNavigationDescription" name="Making Of" browseExpression="[makingOfStories/]" diagramDescription="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']">
             <containerViewVariable name="containerView"/>
             <containerVariable name="container"/>
             <representationNameVariable name="diagramName"/>
