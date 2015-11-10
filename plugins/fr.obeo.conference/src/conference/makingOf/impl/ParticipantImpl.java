@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.makingOf.impl.ParticipantImpl#getAge <em>Age</em>}</li>
  *   <li>{@link conference.makingOf.impl.ParticipantImpl#getPerson <em>Person</em>}</li>
  *   <li>{@link conference.makingOf.impl.ParticipantImpl#getAttitude <em>Attitude</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

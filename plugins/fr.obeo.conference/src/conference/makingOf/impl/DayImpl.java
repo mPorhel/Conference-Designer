@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.makingOf.impl.DayImpl#getName <em>Name</em>}</li>
  *   <li>{@link conference.makingOf.impl.DayImpl#getTasks <em>Tasks</em>}</li>
  *   <li>{@link conference.makingOf.impl.DayImpl#getIdeas <em>Ideas</em>}</li>
  *   <li>{@link conference.makingOf.impl.DayImpl#getParticipants <em>Participants</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -137,7 +137,7 @@ public class DayImpl extends EObjectImpl implements Day {
 	 */
 	public EList<Task> getTasks() {
 		if (tasks == null) {
-			tasks = new EObjectContainmentEList<Task>(Task.class, this, MakingOfPackage.DAY__TASKS);
+			tasks = new EObjectContainmentEList.Resolving<Task>(Task.class, this, MakingOfPackage.DAY__TASKS);
 		}
 		return tasks;
 	}
@@ -149,7 +149,7 @@ public class DayImpl extends EObjectImpl implements Day {
 	 */
 	public EList<Task> getIdeas() {
 		if (ideas == null) {
-			ideas = new EObjectContainmentEList<Task>(Task.class, this, MakingOfPackage.DAY__IDEAS);
+			ideas = new EObjectContainmentEList.Resolving<Task>(Task.class, this, MakingOfPackage.DAY__IDEAS);
 		}
 		return ideas;
 	}
@@ -161,7 +161,7 @@ public class DayImpl extends EObjectImpl implements Day {
 	 */
 	public EList<Participant> getParticipants() {
 		if (participants == null) {
-			participants = new EObjectContainmentEList<Participant>(Participant.class, this, MakingOfPackage.DAY__PARTICIPANTS);
+			participants = new EObjectContainmentEList.Resolving<Participant>(Participant.class, this, MakingOfPackage.DAY__PARTICIPANTS);
 		}
 		return participants;
 	}

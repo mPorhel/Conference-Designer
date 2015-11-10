@@ -13,13 +13,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.Person#getTalks <em>Talks</em>}</li>
  *   <li>{@link conference.Person#getName <em>Name</em>}</li>
  *   <li>{@link conference.Person#getOrganisation <em>Organisation</em>}</li>
  *   <li>{@link conference.Person#getTracks <em>Tracks</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.ConferencePackage#getPerson()
  * @model

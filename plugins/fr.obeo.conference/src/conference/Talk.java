@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.Talk#getSpeakers <em>Speakers</em>}</li>
  *   <li>{@link conference.Talk#getName <em>Name</em>}</li>
@@ -25,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link conference.Talk#getLocation <em>Location</em>}</li>
  *   <li>{@link conference.Talk#getTime <em>Time</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.ConferencePackage#getTalk()
  * @model
@@ -139,7 +139,7 @@ public interface Talk extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subjects</em>' containment reference list.
 	 * @see conference.ConferencePackage#getTalk_Subjects()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Subject> getSubjects();
@@ -155,7 +155,7 @@ public interface Talk extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Making Of Stories</em>' containment reference list.
 	 * @see conference.ConferencePackage#getTalk_MakingOfStories()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Story> getMakingOfStories();

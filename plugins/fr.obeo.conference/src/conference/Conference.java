@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.Conference#getTracks <em>Tracks</em>}</li>
  *   <li>{@link conference.Conference#getSpeakers <em>Speakers</em>}</li>
@@ -20,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link conference.Conference#getDays <em>Days</em>}</li>
  *   <li>{@link conference.Conference#getLocations <em>Locations</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.ConferencePackage#getConference()
  * @model
@@ -38,7 +38,7 @@ public interface Conference extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tracks</em>' containment reference list.
 	 * @see conference.ConferencePackage#getConference_Tracks()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Track> getTracks();
@@ -54,7 +54,7 @@ public interface Conference extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Speakers</em>' containment reference list.
 	 * @see conference.ConferencePackage#getConference_Speakers()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Person> getSpeakers();
@@ -96,7 +96,7 @@ public interface Conference extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Days</em>' containment reference list.
 	 * @see conference.ConferencePackage#getConference_Days()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Day> getDays();
@@ -112,7 +112,7 @@ public interface Conference extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Locations</em>' containment reference list.
 	 * @see conference.ConferencePackage#getConference_Locations()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Location> getLocations();

@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.makingOf.Participant#getAge <em>Age</em>}</li>
  *   <li>{@link conference.makingOf.Participant#getPerson <em>Person</em>}</li>
  *   <li>{@link conference.makingOf.Participant#getAttitude <em>Attitude</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.makingOf.MakingOfPackage#getParticipant()
  * @model

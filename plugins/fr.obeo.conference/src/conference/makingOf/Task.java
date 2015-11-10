@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.makingOf.Task#getName <em>Name</em>}</li>
  *   <li>{@link conference.makingOf.Task#getIsInvolved <em>Is Involved</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.makingOf.MakingOfPackage#getTask()
  * @model

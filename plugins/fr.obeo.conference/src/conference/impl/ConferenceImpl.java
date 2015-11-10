@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.impl.ConferenceImpl#getTracks <em>Tracks</em>}</li>
  *   <li>{@link conference.impl.ConferenceImpl#getSpeakers <em>Speakers</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link conference.impl.ConferenceImpl#getDays <em>Days</em>}</li>
  *   <li>{@link conference.impl.ConferenceImpl#getLocations <em>Locations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -129,7 +129,7 @@ public class ConferenceImpl extends EObjectImpl implements Conference {
 	 */
 	public EList<Track> getTracks() {
 		if (tracks == null) {
-			tracks = new EObjectContainmentEList<Track>(Track.class, this, ConferencePackage.CONFERENCE__TRACKS);
+			tracks = new EObjectContainmentEList.Resolving<Track>(Track.class, this, ConferencePackage.CONFERENCE__TRACKS);
 		}
 		return tracks;
 	}
@@ -141,7 +141,7 @@ public class ConferenceImpl extends EObjectImpl implements Conference {
 	 */
 	public EList<Person> getSpeakers() {
 		if (speakers == null) {
-			speakers = new EObjectContainmentEList<Person>(Person.class, this, ConferencePackage.CONFERENCE__SPEAKERS);
+			speakers = new EObjectContainmentEList.Resolving<Person>(Person.class, this, ConferencePackage.CONFERENCE__SPEAKERS);
 		}
 		return speakers;
 	}
@@ -174,7 +174,7 @@ public class ConferenceImpl extends EObjectImpl implements Conference {
 	 */
 	public EList<Day> getDays() {
 		if (days == null) {
-			days = new EObjectContainmentEList<Day>(Day.class, this, ConferencePackage.CONFERENCE__DAYS);
+			days = new EObjectContainmentEList.Resolving<Day>(Day.class, this, ConferencePackage.CONFERENCE__DAYS);
 		}
 		return days;
 	}
@@ -186,7 +186,7 @@ public class ConferenceImpl extends EObjectImpl implements Conference {
 	 */
 	public EList<Location> getLocations() {
 		if (locations == null) {
-			locations = new EObjectContainmentEList<Location>(Location.class, this, ConferencePackage.CONFERENCE__LOCATIONS);
+			locations = new EObjectContainmentEList.Resolving<Location>(Location.class, this, ConferencePackage.CONFERENCE__LOCATIONS);
 		}
 		return locations;
 	}

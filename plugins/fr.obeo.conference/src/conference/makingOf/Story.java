@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.makingOf.Story#getDays <em>Days</em>}</li>
  *   <li>{@link conference.makingOf.Story#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.makingOf.MakingOfPackage#getStory()
  * @model
@@ -35,7 +35,7 @@ public interface Story extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Days</em>' containment reference list.
 	 * @see conference.makingOf.MakingOfPackage#getStory_Days()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Day> getDays();

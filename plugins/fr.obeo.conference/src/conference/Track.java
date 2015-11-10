@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.Track#getTalks <em>Talks</em>}</li>
  *   <li>{@link conference.Track#getName <em>Name</em>}</li>
  *   <li>{@link conference.Track#getAnimators <em>Animators</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.ConferencePackage#getTrack()
  * @model
@@ -36,7 +36,7 @@ public interface Track extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Talks</em>' containment reference list.
 	 * @see conference.ConferencePackage#getTrack_Talks()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Talk> getTalks();

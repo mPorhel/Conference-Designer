@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.impl.TrackImpl#getTalks <em>Talks</em>}</li>
  *   <li>{@link conference.impl.TrackImpl#getName <em>Name</em>}</li>
  *   <li>{@link conference.impl.TrackImpl#getAnimators <em>Animators</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -106,7 +106,7 @@ public class TrackImpl extends EObjectImpl implements Track {
 	 */
 	public EList<Talk> getTalks() {
 		if (talks == null) {
-			talks = new EObjectContainmentEList<Talk>(Talk.class, this, ConferencePackage.TRACK__TALKS);
+			talks = new EObjectContainmentEList.Resolving<Talk>(Talk.class, this, ConferencePackage.TRACK__TALKS);
 		}
 		return talks;
 	}
