@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.makingOf.impl.StoryImpl#getDays <em>Days</em>}</li>
  *   <li>{@link conference.makingOf.impl.StoryImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -94,7 +94,7 @@ public class StoryImpl extends EObjectImpl implements Story {
 	 */
 	public EList<Day> getDays() {
 		if (days == null) {
-			days = new EObjectContainmentEList<Day>(Day.class, this, MakingOfPackage.STORY__DAYS);
+			days = new EObjectContainmentEList.Resolving<Day>(Day.class, this, MakingOfPackage.STORY__DAYS);
 		}
 		return days;
 	}

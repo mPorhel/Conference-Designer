@@ -13,13 +13,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.makingOf.Day#getName <em>Name</em>}</li>
  *   <li>{@link conference.makingOf.Day#getTasks <em>Tasks</em>}</li>
  *   <li>{@link conference.makingOf.Day#getIdeas <em>Ideas</em>}</li>
  *   <li>{@link conference.makingOf.Day#getParticipants <em>Participants</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.makingOf.MakingOfPackage#getDay()
  * @model
@@ -63,7 +63,7 @@ public interface Day extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tasks</em>' containment reference list.
 	 * @see conference.makingOf.MakingOfPackage#getDay_Tasks()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Task> getTasks();
@@ -79,7 +79,7 @@ public interface Day extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ideas</em>' containment reference list.
 	 * @see conference.makingOf.MakingOfPackage#getDay_Ideas()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Task> getIdeas();
@@ -95,7 +95,7 @@ public interface Day extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Participants</em>' containment reference list.
 	 * @see conference.makingOf.MakingOfPackage#getDay_Participants()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<Participant> getParticipants();

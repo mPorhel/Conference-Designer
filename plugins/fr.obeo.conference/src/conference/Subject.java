@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.Subject#getDescription <em>Description</em>}</li>
  *   <li>{@link conference.Subject#isIsDone <em>Is Done</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.ConferencePackage#getSubject()
  * @model

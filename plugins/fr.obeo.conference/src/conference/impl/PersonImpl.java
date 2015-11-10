@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.impl.PersonImpl#getTalks <em>Talks</em>}</li>
  *   <li>{@link conference.impl.PersonImpl#getName <em>Name</em>}</li>
  *   <li>{@link conference.impl.PersonImpl#getOrganisation <em>Organisation</em>}</li>
  *   <li>{@link conference.impl.PersonImpl#getTracks <em>Tracks</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

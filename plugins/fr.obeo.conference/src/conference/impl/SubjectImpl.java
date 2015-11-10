@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.impl.SubjectImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link conference.impl.SubjectImpl#isIsDone <em>Is Done</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conference.Day#getName <em>Name</em>}</li>
  *   <li>{@link conference.Day#getTalks <em>Talks</em>}</li>
  * </ul>
- * </p>
  *
  * @see conference.ConferencePackage#getDay()
  * @model

@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.impl.TalkImpl#getSpeakers <em>Speakers</em>}</li>
  *   <li>{@link conference.impl.TalkImpl#getName <em>Name</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link conference.impl.TalkImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link conference.impl.TalkImpl#getTime <em>Time</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -280,7 +280,7 @@ public class TalkImpl extends EObjectImpl implements Talk {
 	 */
 	public EList<Subject> getSubjects() {
 		if (subjects == null) {
-			subjects = new EObjectContainmentEList<Subject>(Subject.class, this, ConferencePackage.TALK__SUBJECTS);
+			subjects = new EObjectContainmentEList.Resolving<Subject>(Subject.class, this, ConferencePackage.TALK__SUBJECTS);
 		}
 		return subjects;
 	}
@@ -292,7 +292,7 @@ public class TalkImpl extends EObjectImpl implements Talk {
 	 */
 	public EList<Story> getMakingOfStories() {
 		if (makingOfStories == null) {
-			makingOfStories = new EObjectContainmentEList<Story>(Story.class, this, ConferencePackage.TALK__MAKING_OF_STORIES);
+			makingOfStories = new EObjectContainmentEList.Resolving<Story>(Story.class, this, ConferencePackage.TALK__MAKING_OF_STORIES);
 		}
 		return makingOfStories;
 	}

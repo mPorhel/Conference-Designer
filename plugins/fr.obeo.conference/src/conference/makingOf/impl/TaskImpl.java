@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conference.makingOf.impl.TaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link conference.makingOf.impl.TaskImpl#getIsInvolved <em>Is Involved</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
