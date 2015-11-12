@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conference:Conference xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conference="http://www.example.org/conference" name="">
+  <tracks name="General">
+    <talks speakers="//@speakers.0" name="Welcome speech" duration="30" time="9h30"/>
+    <talks name="Sirius roadmap" duration="30" time="14h00"/>
+  </tracks>
+  <tracks name="Customer_testimonies"/>
+  <tracks name="ObeoTechnical" animators="//@speakers.1"/>
+  <speakers talks="//@tracks.0/@talks.0" name="Stéphane Lacrampe" organisation="Obeo"/>
+  <speakers name="Maxime Porhel" organisation="Obeo" tracks="//@tracks.2"/>
+  <speakers name="new speaker 3"/>
+  <speakers name="new speaker 4"/>
+  <locations name="Room1"/>
+  <locations name="Room2"/>
+  <locations name="Hall"/>
+</conference:Conference>
