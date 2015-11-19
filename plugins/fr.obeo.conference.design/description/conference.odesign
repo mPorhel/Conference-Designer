@@ -140,10 +140,10 @@
       </defaultLayer>
       <additionalLayers name="Sirius">
         <decorationDescriptionsSet>
-          <decorationDescriptions xsi:type="description_1:MappingBasedDecoration" name="Vote" position="NORTH_EAST" decoratorPath="/fr.obeo.conference.design/images/icone_Sirius_16.png" preconditionExpression="[name.contains('Sirius') or abstract.contains('Sirius')/]" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']"/>
+          <decorationDescriptions xsi:type="description_1:MappingBasedDecoration" name="Vote" position="NORTH_EAST" decoratorPath="/fr.obeo.conference.design/images/icone_Sirius_16.png" preconditionExpression="aql:self.name.contains('Sirius') or self.abstract.contains('Sirius')" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']"/>
         </decorationDescriptionsSet>
         <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[oclAsType(conference::Talk).abstract.oclIsUndefined() or not oclAsType(conference::Talk).abstract.contains('Sirius')/]">
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.oclAsType(conference::Talk).abstract = null or not self.oclAsType(conference::Talk).abstract.contains('Sirius')">
             <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Tracks%20Diagram']/@defaultLayer/@containerMappings[name='TrackContainer']/@subContainerMappings[name='TalkContainer']/@style" referenceName="labelColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
             </featureCustomizations>
@@ -472,6 +472,9 @@
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Days Planning" titleExpression="Days Planning" domainClass="conference.Conference" enablePopupBars="true">
       <metamodel href="http://www.example.org/conference#/"/>
+      <filters xsi:type="filter:CompositeFilterDescription" name="Hide Location">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@containerMappings[name='Week']/@subContainerMappings[name='DayContainer']/@subContainerMappings[name='Days_TalkContainer']/@subNodeMappings[name='Location']"/>
+      </filters>
       <layout xsi:type="description_1:CompositeLayout" padding="20" direction="LeftToRight"/>
       <defaultLayer name="Default">
         <containerMappings name="Week" semanticCandidatesExpression="var:self" domainClass="conference.Conference" childrenPresentation="HorizontalStack">
@@ -493,7 +496,7 @@
                 </style>
               </subNodeMappings>
               <subNodeMappings name="Speaker" labelDirectEdit="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Days%20Planning']/@defaultLayer/@toolSections.0/@ownedTools[name='DE_Day']" semanticCandidatesExpression="var:self" domainClass="conference.Talk">
-                <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'by ' + self.speakers.name->sep(', ')" iconPath="/fr.obeo.conference.design/images/Day.gif" labelAlignment="LEFT" resizeKind="NSEW">
+                <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:if (self.speakers->isEmpty()) then '' else 'by ' + self.speakers.name->sep(', ')" iconPath="/fr.obeo.conference.design/images/Day.gif" labelAlignment="LEFT" resizeKind="NSEW">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
@@ -584,7 +587,7 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="isInvolved" deletionDescription="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteIsInvolved']" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='Task']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantEConEU2015']" targetFinderExpression="feature:isInvolved">
+        <edgeMappings name="isInvolved" deletionDescription="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteIsInvolved']" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='Task']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantEConEU2015'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantESSEI']" targetFinderExpression="feature:isInvolved">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -592,7 +595,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Has an Idea" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantEConEU2015']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@borderedNodeMappings[name='Idea']" targetFinderExpression="[eContainer(Story).days.ideas/]">
+        <edgeMappings name="Has an Idea" sourceMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantIstanbul'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantJugSummerCamp'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantZurich'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantMixIT'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantEConEU2015'] //@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@subNodeMappings[name='ParticipantESSEI']" targetMapping="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']/@defaultLayer/@containerMappings[name='Day']/@borderedNodeMappings[name='Idea']" targetFinderExpression="[eContainer(Story).days.ideas/]">
           <style lineStyle="dash" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -747,6 +750,30 @@
               </style>
             </conditionnalStyles>
           </subNodeMappings>
+          <subNodeMappings name="ParticipantESSEI" preconditionExpression="aql:self.eContainer(conference::Conference).name.contains('ESSEI')" semanticCandidatesExpression="feature:participants" domainClass="makingOf.Participant">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="ESSEI will be great" sizeComputationExpression="18" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Etienne1b.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+            <conditionnalStyles predicateExpression="aql:container.oclAsType(makingOf::Day).tasks.isInvolved->select(myParticip | self = myParticip)->size() = 1">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Contextual to embedded systems, but too much" sizeComputationExpression="18" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Etienne2.jpg">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:container.oclAsType(makingOf::Day).tasks.isInvolved->select(myParticip | self = myParticip)->size() = 2">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="Lets ask advises to a French who lives in Munich" sizeComputationExpression="18" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Etienne3.jpg">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:container.oclAsType(makingOf::Day).tasks.isInvolved->select(myParticip | self = myParticip)->size() = 3">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="I found an idea for my introduction: a german beer designer!" sizeComputationExpression="18" arcWidth="1" arcHeight="1" workspacePath="/fr.obeo.conference.design/images/Etienne4.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+          </subNodeMappings>
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" roundedCorner="true" widthComputationExpression="40" heightComputationExpression="30">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_gray']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -776,7 +803,7 @@
               <firstModelOperations xsi:type="tool:CreateInstance" typeName="makingOf.Task" referenceName="tasks"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:SelectionWizardDescription" name="Participant" label="Best Expert of the World" precondition="[oclIsTypeOf(makingOf::Day)/]" candidatesExpression="[eContainer(Conference).speakers/]" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif" windowTitle="Speaker Wizard">
+          <ownedTools xsi:type="tool:SelectionWizardDescription" name="Participant" label="Speaker" precondition="[oclIsTypeOf(makingOf::Day)/]" candidatesExpression="aql:self.eContainer(conference::Conference).speakers" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif" windowTitle="Speaker Wizard">
             <element name="speaker"/>
             <containerView name="containerView"/>
             <container name="day"/>
@@ -801,7 +828,13 @@
             <sourceViewVariable name="sourceView"/>
             <targetViewVariable name="targetView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool:SetValue" featureName="isInvolved" valueExpression="var:target"/>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="isInvolved" valueExpression="var:target">
+                <subModelOperations xsi:type="tool:If" conditionExpression="aql:target.eContainer().oclAsType(makingOf::Day).tasks.isInvolved->select(myParticip | self = myParticip)->size() = 3">
+                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:target.eContainer()">
+                    <subModelOperations xsi:type="tool:CreateInstance" typeName="makingOf.Task" referenceName="ideas"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
             </initialOperation>
           </ownedTools>
           <ownedTools xsi:type="tool_1:DeleteElementDescription" name="DeleteIsInvolved">
@@ -820,7 +853,7 @@
       <metamodel href="http://www.example.org/conference#//makingOf"/>
       <layers name="Making Of" activeByDefault="true">
         <toolSections name="Making Of">
-          <ownedTools xsi:type="tool_1:DiagramNavigationDescription" name="Making Of" browseExpression="[makingOfStories/]" diagramDescription="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']">
+          <ownedTools xsi:type="tool_1:DiagramNavigationDescription" name="Making Of" label="Making of " browseExpression="[makingOfStories/]" diagramDescription="//@ownedViewpoints[name='Making%20Of']/@ownedRepresentations[name='Making%20Of']">
             <containerViewVariable name="containerView"/>
             <containerVariable name="container"/>
             <representationNameVariable name="diagramName"/>
