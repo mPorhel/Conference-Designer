@@ -11,12 +11,13 @@ To install it, the easiest way is to download Obeo Designer Community Edition 7.
 
 
 Last change: 
-* Upgrade to Sirius 2.0 (and OD 7.0.1)
+* Upgrade to Sirius 3.1 (and OD 8.1.0)
 * Representations with different ways to show the same information
+* Use picture for speakers and location
+* Use Compartiments for days planning
 
 The very next steps for this project are:
-* upgrade to Sirius 3.0 
-* migrate to AQL
+* full migration to AQL
 
 
 # Demo Scenario
