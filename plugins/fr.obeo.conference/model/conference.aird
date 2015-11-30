@@ -981,7 +981,7 @@
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ldHO4D6SEeSE_7w2z728pw" name="age : EInt = 0" tooltipText="">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ldHO4D6SEeSE_7w2z728pw" name="age : EInt = " tooltipText="">
           <target xmi:type="ecore:EAttribute" href="conference.ecore#//makingOf/Participant/age"/>
           <semanticElements xmi:type="ecore:EAttribute" href="conference.ecore#//makingOf/Participant/age"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_mPXLMD6SEeSE_7w2z728pw" labelAlignment="LEFT">
@@ -1089,7 +1089,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_EK1D9D6UEeSE_7w2z728pw" name="duration : EInt = 0" tooltipText="">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_EK1D9D6UEeSE_7w2z728pw" name="duration : EInt = " tooltipText="">
           <target xmi:type="ecore:EAttribute" href="conference.ecore#//Talk/duration"/>
           <semanticElements xmi:type="ecore:EAttribute" href="conference.ecore#//Talk/duration"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_EK1rAD6UEeSE_7w2z728pw" labelAlignment="LEFT">
@@ -1131,7 +1131,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_9HklID6qEeSE_7w2z728pw" name="Attitude" tooltipText="">
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_9HklID6qEeSE_7w2z728pw" name="Attitude" tooltipText="" width="12" height="10">
         <target xmi:type="ecore:EEnum" href="conference.ecore#//makingOf/Attitude"/>
         <semanticElements xmi:type="ecore:EEnum" href="conference.ecore#//makingOf/Attitude"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
