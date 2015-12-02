@@ -357,6 +357,21 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_chocolate']"/>
           </style>
         </backgroundConditionalStyle>
+        <backgroundConditionalStyle predicateExpression="[eContainer(Track).name='Customer Testimonies'/]">
+          <style>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+          </style>
+        </backgroundConditionalStyle>
+        <backgroundConditionalStyle predicateExpression="[eContainer(Track).name='General'/]">
+          <style>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+          </style>
+        </backgroundConditionalStyle>
+        <backgroundConditionalStyle predicateExpression="[eContainer(Track).name='Technical Stuff &amp; Discovery'/]">
+          <style>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+          </style>
+        </backgroundConditionalStyle>
       </intersection>
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_3:TreeDescription" name="Stats" initialisation="true" domainClass="conference.Conference">
