@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" name="extension" version="10.1.3.201511131800">
+  <ownedViewpoints name="Conference Extension" modelFileExtension="conference">
+    <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="Location extension" viewpointURI="viewpoint:/fr.obeo.conference.design/Conference Views" representationName="Locations Diagram">
+      <layers name="SiriusCon extension layer" activeByDefault="true">
+        <toolSections name="Tool">
+          <ownedTools xsi:type="tool:SelectionWizardDescription" name="newTool" label="Insert Speaker" candidatesExpression="aql:diagram.target.speakers->select(i|i.eInverse().eContainer(diagram::DDiagram) -> excludes(diagram))" message="Insertion tool provided by extension">
+            <filters precondition="aql:self.synchronized" elementsToListen="var:self">
+              <listeners domainClass="diagram.DDiagram" featureName="synchronized"/>
+            </filters>
+            <element name="element"/>
+            <containerView name="containerView"/>
+            <container name="container"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:CreateView" containerViewExpression="var:containerView">
+                  <mapping xsi:type="description_1:NodeMapping" href="../../fr.obeo.conference.design/description/conference.odesign#//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Locations%20Diagram']/@defaultLayer/@containerMappings[name='LocationContainer']/@subNodeMappings[name='Location%20Speaker']"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </layers>
+    </ownedRepresentationExtensions>
+  </ownedViewpoints>
+</description:Group>
