@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conference:Conference xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:conference="http://www.example.org/conference" name="EclipseCon North America 2016">
+  <tracks name="Eclipse Platform / RCP / Runtimes"/>
+  <tracks name="Other Cool Stuff">
+    <talks name="Let's treat Eclipse Neon more like a product" duration="60" day="//@days.1" location="//@locations.2" time="17:00"/>
+  </tracks>
+  <tracks name="Language and tools"/>
+  <tracks name="Modeling">
+    <talks speakers="//@speakers.0 //@speakers.3" name="Modeling Avengers: Open source technology mix for saving the world" abstract="Planet earth is facing massive challenges:  global warming and scarcity of natural resources among others. &#xA;Those challenges are reaching a level of complexity unknown yet and trying to address those requires deep&#xA;scientific understanding, real world data,  specialized tools, inter-disciplinary collaboration and the ability to&#xA;evaluate “What If” scenarios.&#xA;..." duration="35" day="//@days.1" location="//@locations.2" time="14:15"/>
+    <talks speakers="//@speakers.1" name="How to make robust and scalable modeling workbenches with Sirius" abstract="You have already built a modeling workbench thanks to Sirius and you are going to deploy &#xA;it on a large scale?&#xA;&#xA;So you may need a deeper understanding on how Sirius works and learn about how to make&#xA; your tool more robust and more scalable.&#xA;&#xA;During this talk, we will give some insights about internal Sirius mechanisms, for example&#xA;how Sirius computes the elements which are displayed in your modeler.&#xA;&#xA;This talk is targeted to people who have already played a little with Sirius and created their own &#xA;modelers with it (even very simple ones), and want to go to the next step." duration="35" day="//@days.2" location="//@locations.2" time="14:15"/>
+    <talks speakers="//@speakers.5 //@speakers.2" name="Modeling Symposium" duration="60" day="//@days.1" location="//@locations.0" time="17:00"/>
+    <talks speakers="//@speakers.5" name="Ecore Editor reloaded" duration="35" day="//@days.2" location="//@locations.1" time="10:30"/>
+    <talks speakers="//@speakers.6" name="CDO's new clothes" duration="35" day="//@days.2" location="//@locations.5" time="15:00"/>
+    <talks speakers="//@speakers.4" name="Tailor-made model comparison: how to customize EMF Compare for your modeling language" duration="35" day="//@days.2" location="//@locations.3" time="16:15"/>
+  </tracks>
+  <tracks name="BOFs"/>
+  <tracks name="Science"/>
+  <tracks name="IoT Summit">
+    <talks name="Open source internet of things 101" duration="35" day="//@days.1" location="//@locations.4" time="11:00"/>
+  </tracks>
+  <tracks name="Java 9">
+    <talks name="You, me and Jigsaw" duration="35" day="//@days.1" location="//@locations.0" time="11:00"/>
+  </tracks>
+  <tracks name="IDEs"/>
+  <tracks name="Web / Mobile / Cloud Development"/>
+  <speakers talks="//@tracks.3/@talks.0" name="Cédric Brun" organisation="Obeo"/>
+  <speakers talks="//@tracks.3/@talks.1" name="Maxime Porhel" organisation="Obeo"/>
+  <speakers talks="//@tracks.3/@talks.2" name="Etienne Juliot" organisation="Obeo"/>
+  <speakers talks="//@tracks.3/@talks.0" name="Benoit Combemale" organisation="Inra"/>
+  <speakers talks="//@tracks.3/@talks.5" name="Philip Langer " organisation="EclipseSource"/>
+  <speakers talks="//@tracks.3/@talks.2 //@tracks.3/@talks.3" name="Jonas Helming" organisation="EclipseSource"/>
+  <speakers talks="//@tracks.3/@talks.4" name="Eike Steppers" organisation="ES - Computersysteme"/>
+  <days name="Monday"/>
+  <days name="Tuesday" talks="//@tracks.3/@talks.0 //@tracks.3/@talks.2 //@tracks.6/@talks.0 //@tracks.1/@talks.0 //@tracks.7/@talks.0"/>
+  <days name="Wednesday" talks="//@tracks.3/@talks.1 //@tracks.3/@talks.3 //@tracks.3/@talks.4 //@tracks.3/@talks.5"/>
+  <days name="Thursday"/>
+  <locations name="Grand Ballroom AB" talks="//@tracks.3/@talks.2 //@tracks.7/@talks.0"/>
+  <locations name="Grand Ballroom C" talks="//@tracks.3/@talks.3"/>
+  <locations name="Lake Thoreau" talks="//@tracks.3/@talks.0 //@tracks.3/@talks.1 //@tracks.1/@talks.0"/>
+  <locations name="Lake Anne A" talks="//@tracks.3/@talks.5"/>
+  <locations name="Lake Anne B" talks="//@tracks.6/@talks.0"/>
+  <locations name="Town Center AB" talks="//@tracks.3/@talks.4"/>
+</conference:Conference>

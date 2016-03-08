@@ -377,12 +377,12 @@
     <ownedRepresentations xsi:type="description_3:TreeDescription" name="Stats" initialisation="true" domainClass="conference.Conference">
       <metamodel href="http://www.example.org/conference#/"/>
       <subItemMappings name="Locations" domainClass="conference.Conference" semanticCandidatesExpression="var:self">
-        <defaultStyle labelExpression="aql:self.locations->size() + ' Locations'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Location.gif">
+        <defaultStyle labelSize="12" labelExpression="aql:self.locations->size() + ' Locations'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Location.gif">
           <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
         </defaultStyle>
         <subItemMappings name="Location" domainClass="conference.Location" semanticCandidatesExpression="feature:locations">
-          <defaultStyle labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
+          <defaultStyle labelSize="12" labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </defaultStyle>
@@ -403,12 +403,12 @@
         </create>
       </subItemMappings>
       <subItemMappings name="Tracks" domainClass="conference.Conference" semanticCandidatesExpression="var:self">
-        <defaultStyle labelExpression="aql:self.tracks->size() + ' Tracks'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Track.gif">
+        <defaultStyle labelSize="12" labelExpression="aql:self.tracks->size() + ' Tracks'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Track.gif">
           <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
         </defaultStyle>
         <subItemMappings name="Track" detailDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@ownedRepresentationCreationDescriptions[name='Track%20Details%20Diagram']" navigationDescriptions="//@ownedViewpoints[name='Conference%20Views']/@ownedRepresentations[name='Stats']/@ownedRepresentationNavigationDescriptions[name='Track%20Details']" domainClass="conference.Track" semanticCandidatesExpression="feature:tracks">
-          <defaultStyle labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
+          <defaultStyle labelSize="12" labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </defaultStyle>
@@ -429,12 +429,12 @@
         </create>
       </subItemMappings>
       <subItemMappings name="Speakers" domainClass="conference.Conference" semanticCandidatesExpression="var:self">
-        <defaultStyle labelExpression="aql:self.speakers->size() + ' Speakers'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif">
+        <defaultStyle labelSize="12" labelExpression="aql:self.speakers->size() + ' Speakers'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Person.gif">
           <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
         </defaultStyle>
         <subItemMappings name="Speaker" domainClass="conference.Person" semanticCandidatesExpression="feature:speakers">
-          <defaultStyle labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
+          <defaultStyle labelSize="12" labelExpression="aql:self.name + ' : ' + self.talks->size() + ' talks'">
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </defaultStyle>
@@ -455,12 +455,12 @@
         </create>
       </subItemMappings>
       <subItemMappings name="Talks" domainClass="conference.Conference" semanticCandidatesExpression="var:self">
-        <defaultStyle labelExpression="aql:self.tracks.talks->size() + ' Talks'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Talk.gif">
+        <defaultStyle labelSize="12" labelExpression="aql:self.tracks.talks->size() + ' Talks'" iconPath="/fr.obeo.conference.edit/icons/full/obj16/Talk.gif">
           <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
         </defaultStyle>
         <subItemMappings name="Talk" domainClass="conference.Talk" semanticCandidatesExpression="aql:self.tracks.talks">
-          <defaultStyle labelExpression="aql:self.name">
+          <defaultStyle labelSize="12" labelExpression="aql:self.name">
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </defaultStyle>
